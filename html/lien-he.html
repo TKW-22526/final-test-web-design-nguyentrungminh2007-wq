@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liên hệ - URBAN STEP</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-trang="lien-he">
+
+<header class="header">
+  <div class="container">
+    <div class="logo">URBAN STEP</div>
+    <nav class="nav">
+      <a href="../index.html">Trang chủ</a>
+      <a href="san-pham.html">Sản phẩm</a>
+      <a href="gioi-thieu.html">Giới thiệu</a>
+      <a href="lien-he.html" class="active">Liên hệ</a>
+    </nav>
+    <a href="san-pham.html" class="gio-hang-icon">
+      🛒
+      <span class="gio-hang-badge">0</span>
+    </a>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <h1 class="section-title">Liên hệ với chúng tôi</h1>
+    <p class="section-sub">Gửi câu hỏi, chúng tôi sẽ phản hồi trong vòng 24 giờ.</p>
+
+    <div style="display:flex; gap:40px; flex-wrap:wrap">
+      <form id="contactForm" style="flex:1; min-width:280px">
+        <div class="form-group">
+          <label for="ten">Họ và tên</label>
+          <input type="text" id="ten" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" required>
+        </div>
+        <div class="form-group">
+          <label for="sdt">Số điện thoại</label>
+          <input type="tel" id="sdt">
+        </div>
+        <div class="form-group">
+          <label for="noidung">Nội dung</label>
+          <textarea id="noidung" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-full">Gửi yêu cầu</button>
+        <p class="thong-bao" id="thongBaoGui">Đã gửi thành công (đây là trang demo).</p>
+      </form>
+
+      <div style="flex:1; min-width:280px">
+        <div class="info-box" style="margin-bottom:16px">
+          <h3>Địa chỉ</h3>
+          <p>12 Đường Lê Lợi, Quận 1, TP. Hồ Chí Minh</p>
+        </div>
+        <div class="info-box" style="margin-bottom:16px">
+          <h3>Hotline</h3>
+          <p>1900 6868</p>
+        </div>
+        <div class="info-box">
+          <h3>Email</h3>
+          <p>hotro@urbanstep.vn</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p>© 2026 Urban Step - Đồ án web bán hàng (demo)</p>
+  </div>
+</footer>
+
+<script src="../js/data.js"></script>
+<script src="../js/cart.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

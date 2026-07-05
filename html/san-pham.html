@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sản phẩm - URBAN STEP</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-trang="san-pham">
+
+<header class="header">
+  <div class="container">
+    <div class="logo">URBAN STEP</div>
+    <nav class="nav">
+      <a href="../index.html">Trang chủ</a>
+      <a href="san-pham.html" class="active">Sản phẩm</a>
+      <a href="gioi-thieu.html">Giới thiệu</a>
+      <a href="lien-he.html">Liên hệ</a>
+    </nav>
+    <div class="gio-hang-icon" id="cartToggleBtn" style="cursor:pointer">
+      🛒
+      <span class="gio-hang-badge">0</span>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <h1 class="section-title">Tất cả sản phẩm</h1>
+    <p class="section-sub">Chọn đôi giày tiếp theo của bạn, mỗi sản phẩm đều hiện số lượng tồn kho.</p>
+
+    <div class="cart-box" id="cartBox">
+      <h3>Giỏ hàng của bạn</h3>
+      <div id="cartItems"></div>
+      <div class="cart-total">
+        <span>Tạm tính</span>
+        <span id="cartTotal">0đ</span>
+      </div>
+      <button class="btn btn-full" onclick="suKienThanhToan()">Thanh toán</button>
+    </div>
+
+    <div class="tabs" id="tabs"></div>
+    <div class="product-grid" id="productGrid"></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p>© 2026 Urban Step - Đồ án web bán hàng (demo)</p>
+  </div>
+</footer>
+
+<script src="../js/data.js"></script>
+<script src="../js/cart.js"></script>
+<script src="../js/main.js"></script>
+</body>
+</html>
