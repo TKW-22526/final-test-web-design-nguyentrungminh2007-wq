@@ -1,5 +1,15 @@
 // main.js - xử lý hiển thị cho từng trang
 
+// các trang trong thư mục html/ phải lùi ra 1 cấp mới tới được thư mục assets/
+// còn index.html (ở gốc) thì vào thẳng assets/ luôn
+const dangOTrongHtml = window.location.pathname.includes("/html/");
+const goc = dangOTrongHtml ? "../" : "";
+
+// trả về đường dẫn ảnh đúng cho trang hiện tại, dùng cho mọi nơi có sp.anh
+function duongDanAnh(tenFile) {
+  return goc + "assets/" + tenFile;
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   const trang = document.body.dataset.trang;
 
@@ -29,7 +39,7 @@ function taoTheSanPham(sp, duongDan) {
 
   return (
     '<div class="product-card">' +
-      '<a href="' + link + '"><img src="' + sp.anh + '" alt="' + sp.ten + '"></a>' +
+      '<a href="' + link + '"><img src="' + duongDanAnh(sp.anh) + '" alt="' + sp.ten + '"></a>' +
       '<div class="product-info">' +
         '<div class="product-category">' + tenDanhMuc + '</div>' +
         '<a href="' + link + '"><div class="product-name">' + sp.ten + '</div></a>' +
@@ -162,7 +172,7 @@ function veGioHang() {
     tongTien += sp.gia * item.soLuong;
     html +=
       '<div class="cart-line">' +
-        '<img src="' + sp.anh + '" alt="' + sp.ten + '">' +
+        '<img src="' + duongDanAnh(sp.anh) + '" alt="' + sp.ten + '">' +
         '<div class="cart-line-info">' +
           '<div class="ten">' + sp.ten + '</div>' +
           '<div class="meta">Size ' + item.size + ' x ' + item.soLuong + ' - ' + dinhDangTien(sp.gia) + '</div>' +
@@ -217,7 +227,7 @@ function khoiTaoTrangChiTiet() {
     const disabled = sp.tonKho <= 0 ? "disabled" : "";
 
     wrap.innerHTML =
-      '<div class="detail-img"><img src="' + sp.anh + '" alt="' + sp.ten + '"></div>' +
+      '<div class="detail-img"><img src="' + duongDanAnh(sp.anh) + '" alt="' + sp.ten + '"></div>' +
       '<div class="detail-info">' +
         '<div class="brand">' + sp.hang + '</div>' +
         '<h1>' + sp.ten + '</h1>' +
