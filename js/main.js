@@ -1,26 +1,19 @@
-// main.js - xử lý hiển thị cho từng trang
 
-// các trang trong thư mục html/ phải lùi ra 1 cấp mới tới được thư mục assets/
-// còn index.html (ở gốc) thì vào thẳng assets/ luôn
 const dangOTrongHtml = window.location.pathname.includes("/html/");
 const goc = dangOTrongHtml ? "../" : "";
-
-// trả về đường dẫn ảnh đúng cho trang hiện tại, dùng cho mọi nơi có sp.anh
 function duongDanAnh(tenFile) {
   return goc + "assets/" + tenFile;
 }
-
+ //đợi html load xongh mới chạy js
 document.addEventListener("DOMContentLoaded", function () {
   const trang = document.body.dataset.trang;
-
+ 
   if (document.getElementById("tabsTrangChu")) hienThiTabTrangChu();
   if (document.getElementById("noiBatGrid")) hienThiSanPhamNoiBat();
   if (trang === "san-pham") khoiTaoTrangSanPham();
   if (trang === "chi-tiet") khoiTaoTrangChiTiet();
   if (trang === "lien-he") khoiTaoFormLienHe();
 });
-
-// tạo mã HTML cho 1 thẻ sản phẩm, duongDan là "" hoặc "html/" tùy trang
 function taoTheSanPham(sp, duongDan) {
   let trangThai = "";
   if (sp.tonKho <= 0) {
@@ -30,13 +23,14 @@ function taoTheSanPham(sp, duongDan) {
   } else {
     trangThai = '<div class="product-stock">Còn hàng: ' + sp.tonKho + ' đôi</div>';
   }
-
+ 
   const giaCuHTML = sp.giaCu ? '<span class="gia-cu">' + dinhDangTien(sp.giaCu) + '</span>' : "";
+  //cartegories là tên của phần danh mục phân loại trong file data vd du-lich
   const danhMuc = categories.find((c) => c.id === sp.loai);
   const tenDanhMuc = danhMuc ? danhMuc.ten : "";
   const link = duongDan + "chi-tiet.html?id=" + sp.id;
   const disabled = sp.tonKho <= 0 ? "disabled" : "";
-
+ 
   return (
     '<div class="product-card">' +
       '<a href="' + link + '"><img src="' + duongDanAnh(sp.anh) + '" alt="' + sp.ten + '"></a>' +
@@ -54,24 +48,18 @@ function taoTheSanPham(sp, duongDan) {
     '</div>'
   );
 }
-
-// thêm nhanh 1 sản phẩm (size mặc định là size đầu tiên)
 function suKienThemGio(id) {
   const sp = timSanPham(id);
   if (!sp || sp.tonKho <= 0) return;
   themVaoGio(sp.id, sp.size[0], 1);
   alert("Đã thêm " + sp.ten + " vào giỏ hàng");
 }
-
-// mua ngay: thêm vào giỏ rồi chuyển tới trang sản phẩm để thanh toán
 function suKienMuaNgay(id, duongDan) {
   const sp = timSanPham(id);
   if (!sp || sp.tonKho <= 0) return;
   themVaoGio(sp.id, sp.size[0], 1);
   window.location.href = duongDan + "san-pham.html#gio-hang";
 }
-
-// ---------- Trang chủ ----------
 function hienThiTabTrangChu() {
   const el = document.getElementById("tabsTrangChu");
   let html = "";
@@ -81,7 +69,7 @@ function hienThiTabTrangChu() {
   });
   el.innerHTML = html;
 }
-
+ 
 function hienThiSanPhamNoiBat() {
   const el = document.getElementById("noiBatGrid");
   const noiBat = products.slice(0, 4);
@@ -91,14 +79,12 @@ function hienThiSanPhamNoiBat() {
   });
   el.innerHTML = html;
 }
-
-// ---------- Trang sản phẩm ----------
 function khoiTaoTrangSanPham() {
   const tabsEl = document.getElementById("tabs");
   const gridEl = document.getElementById("productGrid");
   const params = new URLSearchParams(window.location.search);
   let loaiDangChon = params.get("loai") || "all";
-
+ 
   function veTabs() {
     let html = "";
     categories.forEach((c) => {
@@ -106,7 +92,7 @@ function khoiTaoTrangSanPham() {
       html += '<div class="tab ' + active + '" data-loai="' + c.id + '">' + c.ten + "</div>";
     });
     tabsEl.innerHTML = html;
-
+ 
     tabsEl.querySelectorAll(".tab").forEach((tab) => {
       tab.addEventListener("click", function () {
         loaiDangChon = tab.dataset.loai;
@@ -115,7 +101,7 @@ function khoiTaoTrangSanPham() {
       });
     });
   }
-
+ 
   function veGrid() {
     const ds = locTheoDanhMuc(loaiDangChon);
     if (ds.length === 0) {
@@ -128,42 +114,42 @@ function khoiTaoTrangSanPham() {
     });
     gridEl.innerHTML = html;
   }
-
+ 
   veTabs();
   veGrid();
   khoiTaoGioHang();
 }
-
+ 
 // ---------- Giỏ hàng (hiện trên trang sản phẩm) ----------
 function khoiTaoGioHang() {
   const cartBox = document.getElementById("cartBox");
   const cartBtn = document.getElementById("cartToggleBtn");
   if (!cartBox || !cartBtn) return;
-
+ 
   cartBtn.addEventListener("click", function () {
     cartBox.classList.toggle("show");
     veGioHang();
   });
-
+ 
   if (window.location.hash === "#gio-hang") {
     cartBox.classList.add("show");
   }
-
+ 
   veGioHang();
 }
-
+ 
 function veGioHang() {
   const itemsEl = document.getElementById("cartItems");
   const totalEl = document.getElementById("cartTotal");
   if (!itemsEl) return;
-
+ 
   const gioHang = layGioHang();
   if (gioHang.length === 0) {
     itemsEl.innerHTML = "<p>Giỏ hàng đang trống.</p>";
     totalEl.textContent = dinhDangTien(0);
     return;
   }
-
+ 
   let html = "";
   let tongTien = 0;
   gioHang.forEach((item) => {
@@ -177,18 +163,18 @@ function veGioHang() {
           '<div class="ten">' + sp.ten + '</div>' +
           '<div class="meta">Size ' + item.size + ' x ' + item.soLuong + ' - ' + dinhDangTien(sp.gia) + '</div>' +
         '</div>' +
-        '<button class="btn btn-outline btn-small" onclick="suKienXoaGio(' + sp.id + ', ' + item.size + ')">Xóa</button>' +
+        '<button class="btn btn-outline btn-small" onclick="suKienXoaGio(' + sp.id + ', \'' + item.size + '\')">Xóa</button>' +
       '</div>';
   });
   itemsEl.innerHTML = html;
   totalEl.textContent = dinhDangTien(tongTien);
 }
-
+ 
 function suKienXoaGio(id, size) {
   xoaKhoiGio(id, size);
   veGioHang();
 }
-
+ 
 function suKienThanhToan() {
   if (layGioHang().length === 0) {
     alert("Giỏ hàng đang trống");
@@ -196,16 +182,16 @@ function suKienThanhToan() {
   }
   alert("Cảm ơn bạn! Đây là trang demo nên đơn hàng chưa được gửi đi thật.");
 }
-
+ 
 // ---------- Trang chi tiết sản phẩm ----------
 function khoiTaoTrangChiTiet() {
   const params = new URLSearchParams(window.location.search);
   const id = Number(params.get("id"));
   const sp = timSanPham(id) || products[0];
-  document.title = sp.ten + " - URBAN STEP";
-
+  document.title = sp.ten + " - MINHSTORE";
+ 
   let sizeDangChon = sp.size[0];
-
+ 
   function ve() {
     const wrap = document.getElementById("chiTietWrap");
     const giaCuHTML = sp.giaCu ? '<span class="gia-cu">' + dinhDangTien(sp.giaCu) + '</span>' : "";
@@ -217,15 +203,15 @@ function khoiTaoTrangChiTiet() {
     } else {
       trangThaiKho = '<p class="product-stock">Còn hàng: ' + sp.tonKho + ' đôi</p>';
     }
-
+ 
     let sizeHTML = "";
     sp.size.forEach((s) => {
       const active = s === sizeDangChon ? "active" : "";
-      sizeHTML += '<div class="size-item ' + active + '" onclick="chonSize(' + s + ')">' + s + "</div>";
+      sizeHTML += '<div class="size-item ' + active + '" onclick="chonSize(\'' + s + '\')">' + s + "</div>";
     });
-
+ 
     const disabled = sp.tonKho <= 0 ? "disabled" : "";
-
+ 
     wrap.innerHTML =
       '<div class="detail-img"><img src="' + duongDanAnh(sp.anh) + '" alt="' + sp.ten + '"></div>' +
       '<div class="detail-info">' +
@@ -242,24 +228,24 @@ function khoiTaoTrangChiTiet() {
         '</div>' +
       '</div>';
   }
-
+ 
   window.chonSize = function (s) {
     sizeDangChon = s;
     ve();
   };
-
+ 
   window.themGioChiTiet = function (id) {
     themVaoGio(id, sizeDangChon, 1);
     alert("Đã thêm vào giỏ hàng: size " + sizeDangChon);
   };
-
+ 
   window.muaNgayChiTiet = function (id) {
     themVaoGio(id, sizeDangChon, 1);
     window.location.href = "san-pham.html#gio-hang";
   };
-
+ 
   ve();
-
+ 
   // sản phẩm liên quan cùng danh mục
   const relatedEl = document.getElementById("relatedGrid");
   if (relatedEl) {
@@ -271,8 +257,6 @@ function khoiTaoTrangChiTiet() {
     relatedEl.innerHTML = html;
   }
 }
-
-// ---------- Trang liên hệ ----------
 function khoiTaoFormLienHe() {
   const form = document.getElementById("contactForm");
   const thongBao = document.getElementById("thongBaoGui");
