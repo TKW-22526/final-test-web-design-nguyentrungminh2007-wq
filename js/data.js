@@ -13,31 +13,31 @@ const categories = [
 const products = [
   {
     id: 1,
-    ten: "Urban Explorer 20L",
+    ten: "Urban Explorer",
     hang: "Kordo",
     loai: "du-lich",
     gia: 899000,
     giaCu: 1099000,
     tonKho: 18,
-    size: ["20L", "25L"],
+    size: ["20L"],
     anh: "1.jpg",
     moTa: "Balo du lịch chống nước, nhiều ngăn chứa, phù hợp đi học và đi chơi."
   },
   {
     id: 2,
-    ten: "Campus Pro 18L",
+    ten: "Campus Pro",
     hang: "Northline",
     loai: "hoc-tap",
     gia: 690000,
     giaCu: null,
     tonKho: 12,
-    size: ["18L", "22L"],
+    size: ["18L"],
     anh: "2.jpg",
     moTa: "Balo học sinh, sinh viên với ngăn laptop 15.6 inch."
   },
   {
     id: 3,
-    ten: "Adventure Trek 35L",
+    ten: "Adventure Trek",
     hang: "Vantar",
     loai: "du-lich",
     gia: 1490000,
@@ -49,7 +49,7 @@ const products = [
   },
   {
     id: 4,
-    ten: "Office Smart 22L",
+    ten: "Office Smart",
     hang: "Milano Craft",
     loai: "cong-so",
     gia: 1190000,
@@ -61,7 +61,7 @@ const products = [
   },
   {
     id: 5,
-    ten: "Sport Active 28L",
+    ten: "Sport Active",
     hang: "Kordo",
     loai: "the-thao",
     gia: 990000,
@@ -73,7 +73,7 @@ const products = [
   },
   {
     id: 6,
-    ten: "Travel Max 45L",
+    ten: "Travel Max",
     hang: "Northline",
     loai: "du-lich",
     gia: 1890000,
@@ -85,7 +85,7 @@ const products = [
   },
   {
     id: 7,
-    ten: "City Mini 16L",
+    ten: "City Mini",
     hang: "Milano Craft",
     loai: "thoi-trang",
     gia: 590000,
@@ -97,7 +97,7 @@ const products = [
   },
   {
     id: 8,
-    ten: "TechGuard 30L",
+    ten: "TechGuard",
     hang: "Vantar",
     loai: "laptop",
     gia: 1390000,
@@ -109,7 +109,7 @@ const products = [
   },
   {
     id: 9,
-    ten: "Mountain Peak 50L",
+    ten: "Mountain Peak",
     hang: "Kordo",
     loai: "du-lich",
     gia: 1990000,
@@ -121,7 +121,7 @@ const products = [
   },
   {
     id: 10,
-    ten: "Daily Carry 24L",
+    ten: "Daily Carry",
     hang: "Northline",
     loai: "hoc-tap",
     gia: 780000,
@@ -133,7 +133,7 @@ const products = [
   },
   {
     id: 11,
-    ten: "Business Elite 26L",
+    ten: "Business Elite",
     hang: "Milano Craft",
     loai: "cong-so",
     gia: 1490000,
@@ -145,7 +145,7 @@ const products = [
   },
   {
     id: 12,
-    ten: "Runner Fit 20L",
+    ten: "Runner Fit",
     hang: "Kordo",
     loai: "the-thao",
     gia: 820000,
@@ -157,7 +157,7 @@ const products = [
   },
   {
     id: 13,
-    ten: "GUBANO GB L46",
+    ten: "GUBANO GB",
     hang: "Milano Craft",
     loai: "thoi-trang",
     gia: 750000,
@@ -169,7 +169,7 @@ const products = [
   },
   {
     id: 14,
-    ten: "Laptop Shield 32L",
+    ten: "Laptop Shield",
     hang: "Vantar",
     loai: "laptop",
     gia: 1590000,
@@ -181,7 +181,7 @@ const products = [
   },
   {
     id: 15,
-    ten: "Outdoor Plus 38L",
+    ten: "Outdoor Plus",
     hang: "Northline",
     loai: "du-lich",
     gia: 1690000,
@@ -193,19 +193,19 @@ const products = [
   },
   {
     id: 16,
-    ten: "School Mate 19L",
+    ten: "School Mate",
     hang: "Kordo",
     loai: "hoc-tap",
     gia: 620000,
     giaCu: null,
     tonKho: 19,
-    size: ["19L"],
+    size: ["19L","20L"],
     anh: "16.jpg",
     moTa: "Balo học sinh bền đẹp, chống bám bẩn."
   },
   {
     id: 17,
-    ten: "Office Premium 25L",
+    ten: "Office Premium",
     hang: "Milano Craft",
     loai: "cong-so",
     gia: 1290000,
@@ -217,7 +217,7 @@ const products = [
   },
   {
     id: 18,
-    ten: "Fitness Gear 27L",
+    ten: "Fitness Gear",
     hang: "Vantar",
     loai: "the-thao",
     gia: 950000,
@@ -229,7 +229,7 @@ const products = [
   },
   {
     id: 19,
-    ten: "Fashion Chic 17L",
+    ten: "Fashion Chic",
     hang: "Northline",
     loai: "thoi-trang",
     gia: 680000,
@@ -241,7 +241,7 @@ const products = [
   },
   {
     id: 20,
-    ten: "Ultra Tech 34L",
+    ten: "Ultra Tech",
     hang: "Vantar",
     loai: "laptop",
     gia: 1790000,
